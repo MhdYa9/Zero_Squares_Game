@@ -11,7 +11,6 @@ public class Muggle extends Player{
     @Override
     public void play(Game game){
 
-        Scanner input = new Scanner(System.in);
         String letter = "" ;
         while(!game.winning()){
             try {
@@ -35,6 +34,7 @@ public class Muggle extends Player{
             }
         }
         System.out.println("congratulations you won!");
-
     }
+
+
 }

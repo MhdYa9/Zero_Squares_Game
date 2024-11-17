@@ -3,6 +3,7 @@ package players;
 import algorithms.AlgorithmUtils;
 import structure.Game;
 
+import java.util.Scanner;
 import java.util.Stack;
 
 public class Wizard extends Player{
@@ -22,10 +23,21 @@ public class Wizard extends Player{
     @Override
     public void play(Game game){
 
+        System.out.println("choose an algorithm:\n1) DFS\n2) BFS");
+        int algo = input.nextInt();
 
         long startTime = System.nanoTime();
+        Stack <Integer> path;
 
-        Stack <Integer> path = AlgorithmUtils.bfs(game.getCurrent_state());
+        if(algo == 1){
+            path = AlgorithmUtils.dfs(game.getCurrent_state());
+        }
+        else if (algo == 2) {
+            path =  AlgorithmUtils.bfs(game.getCurrent_state());
+        }
+        else{
+            path = new Stack<>();
+        }
 
         long endTime = System.nanoTime();
         long elapsedTime = endTime - startTime;
