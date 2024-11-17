@@ -1,6 +1,8 @@
 package structure;
 
+import behaviour.Printable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -8,13 +10,6 @@ public class State implements Printable {
 
     private Cell [][] board;
     private static int size;
-
-
-    public static final int L = 0;
-    public static final int U = 1;
-    public static final int R = 2;
-    public static final int D = 3;
-
 
     public static final int [] I = {0,-1,0,1};
     public static final int [] J = {-1,0,1,0};
@@ -166,6 +161,12 @@ public class State implements Printable {
         }
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        return Arrays.deepHashCode(board);
+    }
+
 
     public Cell[][] getBoard() {
         return board;

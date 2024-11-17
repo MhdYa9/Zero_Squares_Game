@@ -1,12 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
+import structure.Game;
 
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        Player p = new Muggle();
-
-        p.play();
+        Game game = new Game();
     }
 }

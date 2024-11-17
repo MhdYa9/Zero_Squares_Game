@@ -1,23 +1,27 @@
 package structure;
 
+import players.Muggle;
+import players.Player;
+import players.Wizard;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 
 public class Game {
 
+    private static final Scanner input = new Scanner(System.in);
     private State current_state;
     private State initial_state;
+    private Player player;
 
     public Game(){
         readFromConsole();
+        choosePlayer();
     }
 
     public void readFromConsole(){
 
         //read the size
-        Scanner input = new Scanner(System.in);
         int size = 0;
         do{
             size = input.nextInt();
@@ -76,9 +80,27 @@ public class Game {
 
     }
 
+    public void choosePlayer(){
+
+        boolean flag = true;
+        while(flag) {
+            System.out.println("choose your player\n1)Muggle\n2)Wizard");
+            int choose = input.nextInt();
+            if(choose == 1){
+                flag = false;
+                player = new Muggle();
+            }
+            else if(choose == 2){
+                flag = false;
+                player = new Wizard();
+            }
+            player.play(this);
+        }
+
+    }
+
     public boolean winning(){
-        List <Pair<Integer,Integer>> ls = current_state.coloredCells();
-        return ls.isEmpty();
+        return current_state.winning();
     }
 
 

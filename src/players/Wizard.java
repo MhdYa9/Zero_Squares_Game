@@ -1,5 +1,6 @@
+package players;
 
-import algorithms.AlgorithmUtils;
+import structure.Game;
 
 public class Wizard extends Player{
 
@@ -8,7 +9,7 @@ public class Wizard extends Player{
     }
 
     @Override
-    public void play(){
+    public void play(Game game){
 
     }
 

@@ -1,16 +1,15 @@
+package players;
+
+import structure.Game;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Muggle extends Player{
 
 
-    public Muggle(){
-        super();
-    }
-
-
     @Override
-    public void play(){
+    public void play(Game game){
 
         Scanner input = new Scanner(System.in);
         String letter = "" ;
