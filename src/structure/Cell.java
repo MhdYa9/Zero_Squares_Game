@@ -5,12 +5,10 @@ public class Cell {
 
     private String color;
     private String goal;
-    private boolean next_move_valid;
 
     public Cell(String word) {
         this.goal = "";
         this.color = "";
-        this.next_move_valid = true;
         for(int i = 0; i<word.length();i++){
             if(Character.isAlphabetic(word.charAt(i))){
                 if(Character.isUpperCase(word.charAt(i))){
@@ -29,7 +27,6 @@ public class Cell {
     public Cell(String color,String goal){
         this.color = color;
         this.goal = goal;
-        this.next_move_valid = true;
     }
 
 
@@ -65,20 +62,9 @@ public class Cell {
         return color.equals("*");
     }
 
-    public boolean isBlackGoal(){
-        return goal.equals("B");
-    }
 
     public boolean isWhiteGoal(){
         return goal.equals("W");
-    }
-
-    public boolean isNext_move_valid() {
-        return next_move_valid;
-    }
-
-    public void setNext_move_valid(boolean next_move_valid) {
-        this.next_move_valid = next_move_valid;
     }
 
     public boolean isEqualTo(Cell other){
