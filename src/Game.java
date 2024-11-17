@@ -99,7 +99,7 @@ public class Game implements Playable {
                 System.out.println("enter your move with letters: a - w - s - d - r for restart");
                 letter = input.next();
                 int move = letterSwitcher(letter);
-                current_state = current_state.move2(move);
+                current_state = current_state.move(move);
             }
             catch (InputMismatchException e){
                 System.out.println("the value you entered is not valid");

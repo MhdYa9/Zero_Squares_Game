@@ -46,71 +46,7 @@ public class State implements Printable {
     }
 
 
-
     public State move(int move) throws InputMismatchException,IllegalStateException{
-
-        List <Pair<Integer,Integer>> colored_cells_coordinates = coloredCells();
-        State nextState = this.deepCopy();
-
-
-        if(move == U){
-            Pair.sort(colored_cells_coordinates,"ASC",true);
-        }
-        else if(move == D){
-            Pair.sort(colored_cells_coordinates,"DESC",true);
-        }
-        else if(move == L){
-            Pair.sort(colored_cells_coordinates,"ASC",false);
-        }
-        else if(move == R){
-            Pair.sort(colored_cells_coordinates,"DESC",false);
-        }
-        else{
-            throw new InputMismatchException("the number you entered is not valid for a movement");
-        }
-
-        nextState.validateMoves(move);
-
-        Cell [][] next_state_board = nextState.getBoard();
-        for(Pair<Integer,Integer> coord: colored_cells_coordinates){
-            int i = coord.getFirst(); int j = coord.getSecond();
-            if(next_state_board[i][j].isNext_move_valid()){
-                while(nextState.is_valid(i+I[move],j+J[move])){
-                    if(next_state_board[i+I[move]][j+J[move]].isGoal()){
-                        if(next_state_board[i+I[move]][j+J[move]].getGoal().equalsIgnoreCase(next_state_board[i][j].getColor())){
-                            next_state_board[i][j].setColor("o");
-                            next_state_board[i+I[move]][j+J[move]].setColor("o");
-                            next_state_board[i+I[move]][j+J[move]].setGoal("");
-                        }
-//                        else if(next_state_board[i+I[move]][j+J[move]].isBlackGoal()){
-//                            next_state_board[i+I[move]][j+J[move]].setGoal("");
-//                            next_state_board[i+I[move]][j+J[move]].setColor("o");
-//                        }
-                        else if(next_state_board[i+I[move]][j+J[move]].isWhiteGoal()){
-                            next_state_board[i+I[move]][j+J[move]].setGoal(next_state_board[i][j].getColor().toUpperCase());
-                            next_state_board[i+I[move]][j+J[move]].setColor(next_state_board[i][j].getColor());
-                            next_state_board[i][j].setColor("o");
-                        }
-                        else {
-                            next_state_board[i+I[move]][j+J[move]].setColor(next_state_board[i][j].getColor());
-                            next_state_board[i][j].setColor("o");
-                        }
-                    }
-                    else{
-                        next_state_board[i+I[move]][j+J[move]].setColor(next_state_board[i][j].getColor());
-                        next_state_board[i][j].setColor("o");
-                    }
-                    i+=I[move]; j+=J[move];
-                }
-                if(!nextState.in_border(i+I[move],j+J[move])){
-                    throw new IllegalStateException("out of border you lost");
-                }
-            }
-        }
-        return nextState;
-    }
-
-    public State move2(int move) throws InputMismatchException,IllegalStateException{
         List <Pair<Integer,Integer>> colored_cells_coordinates = validCellsToMove(move);
         State nextState = this.deepCopy();
 
@@ -147,15 +83,6 @@ public class State implements Printable {
         while(!colored_cells_coordinates.isEmpty());
 
         return nextState;
-
-    }
-
-    public void validateMoves(int move){
-        for(int i =0;i<size;i++){
-            for (int j = 0; j<size;j++){
-                board[i][j].setNext_move_valid(in_border(i + I[move], j + J[move]) && board[i + I[move]][j + J[move]].isAvailable());
-            }
-        }
 
     }
 
@@ -208,16 +135,6 @@ public class State implements Printable {
             }
             System.out.println();
         }
-    }
-
-    public void debug(){
-        for (int i = 0;i<size;i++){
-            for (int j = 0; j<size ; j ++){
-                System.out.print(board[i][j].isNext_move_valid()?1:0);
-            }
-            System.out.println();
-        }
-
     }
 
     public State deepCopy(){
