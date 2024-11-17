@@ -1,16 +1,15 @@
 package structure;
 
 import behaviour.Printable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.List;
+
+import java.util.*;
 
 public class State implements Printable {
 
     private Cell [][] board;
     private static int size;
     public Integer hash = null;
+    public boolean is_valid;
 
     public static final int [] I = {0,-1,0,1};
     public static final int [] J = {-1,0,1,0};
@@ -22,6 +21,7 @@ public class State implements Printable {
     public State(int size, String [][] board){
         State.size = size;
         this.board = new Cell[size][size];
+        this.is_valid = true;
         for (int i = 0; i<size;i++){
             for (int j = 0;j<size;j++){
                 this.board[i][j] = new Cell(board[i][j]);
@@ -72,7 +72,7 @@ public class State implements Printable {
             }
         }
         while(!colored_cells_coordinates.isEmpty());
-
+        nextState.validate();
         return nextState;
 
     }
@@ -138,6 +138,29 @@ public class State implements Printable {
             }
         }
         return clone;
+    }
+
+    public void validate(){
+        HashMap <String,Integer> mp = new HashMap<>();
+        for (int i = 0; i <size ; i++) {
+            for (int j = 0; j <size ; j++) {
+                if(board[i][j].isColor()){
+                    mp.put(board[i][j].getColor(),mp.getOrDefault(board[i][j].getColor(),0)+1);
+                }
+                if(board[i][j].isGoal()){
+                    mp.put(board[i][j].getGoal().toLowerCase(),mp.getOrDefault(board[i][j].getGoal().toLowerCase(),0)-1);
+                }
+            }
+        }
+        is_valid = true;
+        int cnt = mp.getOrDefault("w",0);
+        for (Map.Entry<String, Integer> entry : mp.entrySet()) {
+            //System.out.println("key: "+entry.getKey()+" value: "+entry.getValue());
+            if(entry.getValue()>0){
+                cnt+=entry.getValue();
+            }
+        }
+        is_valid = (cnt == 0);
     }
 
 

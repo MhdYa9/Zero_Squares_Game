@@ -25,8 +25,9 @@ public class AlgorithmUtils {
             node = stack.pop();
             visited.add(node.hashCode());
             int i = 0;
+
             for(State s: node.nexStates()){
-                if((s != null)&&(!visited.contains(s.hashCode()))){
+                if((s != null)&&(s.is_valid)&&(!visited.contains(s.hashCode()))){
                     stack.add(s);
                     parent.put(s.hashCode(),node.hashCode());
                     parentMove.put(s.hashCode(),i);
@@ -68,7 +69,7 @@ public class AlgorithmUtils {
             visited.add(node.hashCode());
             int i = 0;
             for(State s: node.nexStates()){
-                if((s != null)&&(!visited.contains(s.hashCode()))){
+                if((s != null)&&(s.is_valid)&&(!visited.contains(s.hashCode()))){
                     queue.add(s);
                     parent.put(s.hashCode(),node.hashCode());
                     parentMove.put(s.hashCode(),i);
