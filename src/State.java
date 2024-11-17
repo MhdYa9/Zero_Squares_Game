@@ -33,15 +33,12 @@ public class State implements Printable {
 
     public List<State> nexStates(){
         List <State> ls = new ArrayList<>();
-
         for(int i = 0;i<4;i++){
-           State s = new State();
-           s = this.move(i).deepCopy();
+           State s = this.move(i).deepCopy();
            if(!s.isEqualTo(this)){
                ls.add(s);
            }
         }
-
         return ls;
     }
 
@@ -118,6 +115,11 @@ public class State implements Printable {
         return in_border(i,j) && !board[i][j].isBlack() && !board[i][j].isColor();
     }
 
+    public boolean winning(){
+        List <Pair<Integer,Integer>> ls = this.coloredCells();
+        return ls.isEmpty();
+    }
+
     @Override
     public void print() {
         for(int i = 0; i<size;i++){
@@ -131,7 +133,6 @@ public class State implements Printable {
                 else{
                     System.out.print(borders[mp.get(board[i][j].getGoal().toLowerCase())]  + " ■ " + RESET);
                 }
-                //System.out.print(board[i][j].getGoal()+ board[i][j].getColor()+" ");
             }
             System.out.println();
         }

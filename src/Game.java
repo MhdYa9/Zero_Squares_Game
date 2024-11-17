@@ -91,27 +91,6 @@ public class Game implements Playable {
 
     public void mugglePlay(){
 
-        Scanner input = new Scanner(System.in);
-        String letter = "" ;
-        while(!winning()){
-            try {
-                current_state.print();
-                System.out.println("enter your move with letters: a - w - s - d - r for restart");
-                letter = input.next();
-                int move = letterSwitcher(letter);
-                current_state = current_state.move(move);
-            }
-            catch (InputMismatchException e){
-                System.out.println("the value you entered is not valid");
-                if(e.getMessage().isEmpty()) input.next();
-            }
-            catch (IllegalStateException e){
-                System.out.println("try again :)");
-                current_state = initial_state.deepCopy();
-            }
-        }
-        System.out.println("congratulations you won!");
-
     }
 
     public void wizardPlay(){
@@ -124,6 +103,14 @@ public class Game implements Playable {
 
     public State getCurrent_state() {
         return current_state;
+    }
+
+    public void setCurrent_state(State current_state) {
+        this.current_state = current_state;
+    }
+
+    public void setInitial_state(State initial_state) {
+        this.initial_state = initial_state;
     }
 
     public int letterSwitcher(String letter){

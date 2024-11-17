@@ -4,7 +4,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Game g = new Game();
-        g.play();
+
+        Player p = new Muggle();
+
+        p.play();
     }
 }
