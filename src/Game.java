@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class Game implements Playable {
+public class Game {
 
     private State current_state;
     private State initial_state;
@@ -84,18 +84,6 @@ public class Game implements Playable {
 
     }
 
-    @Override
-    public void play() {
-        mugglePlay();
-    }
-
-    public void mugglePlay(){
-
-    }
-
-    public void wizardPlay(){
-
-    }
 
     public State getInitial_state() {
         return initial_state;
