@@ -1,3 +1,6 @@
+
+import structure.Game;
+
 public abstract class Player {
 
     Game game;

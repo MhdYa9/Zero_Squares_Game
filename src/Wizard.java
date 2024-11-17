@@ -1,3 +1,6 @@
+
+import algorithms.AlgorithmUtils;
+
 public class Wizard extends Player{
 
     public Wizard(){

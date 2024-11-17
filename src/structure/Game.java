@@ -1,6 +1,9 @@
+package structure;
+
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class Game {
 
@@ -10,7 +13,6 @@ public class Game {
     public Game(){
         readFromConsole();
     }
-
 
     public void readFromConsole(){
 

@@ -1,3 +1,5 @@
+package structure;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -125,13 +127,13 @@ public class State implements Printable {
         for(int i = 0; i<size;i++){
             for (int j = 0; j<size; j++){
                 if(board[i][j].isGoal() && board[i][j].isColor()){
-                    System.out.print(colors[mp.get(board[i][j].getColor())] + borders[mp.get(board[i][j].getGoal().toLowerCase())]  + " ■ " + RESET);
+                    System.out.print(Printable.colors[Printable.mp.get(board[i][j].getColor())] + Printable.borders[Printable.mp.get(board[i][j].getGoal().toLowerCase())]  + " ■ " + Printable.RESET);
                 }
                 else if(!board[i][j].isGoal()){
-                    System.out.print(colors[mp.get(board[i][j].getColor())] + "   " + RESET);
+                    System.out.print(Printable.colors[Printable.mp.get(board[i][j].getColor())] + "   " + Printable.RESET);
                 }
                 else{
-                    System.out.print(borders[mp.get(board[i][j].getGoal().toLowerCase())]  + " ■ " + RESET);
+                    System.out.print(Printable.borders[Printable.mp.get(board[i][j].getGoal().toLowerCase())]  + " ■ " + Printable.RESET);
                 }
             }
             System.out.println();
