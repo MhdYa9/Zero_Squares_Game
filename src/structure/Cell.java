@@ -1,6 +1,8 @@
 
 package structure;
 
+import java.util.Objects;
+
 public class Cell {
 
     private String color;
@@ -74,8 +76,6 @@ public class Cell {
 
     @Override
     public int hashCode() {
-        int result = (color == null) ? 0 : color.hashCode();
-        result = 31 * result + ((goal == null) ? 0 : goal.hashCode());
-        return result;
+        return Objects.hash(color, goal);
     }
 }

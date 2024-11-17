@@ -10,6 +10,7 @@ public class State implements Printable {
 
     private Cell [][] board;
     private static int size;
+    public Integer hash = null;
 
     public static final int [] I = {0,-1,0,1};
     public static final int [] J = {-1,0,1,0};
@@ -100,12 +101,9 @@ public class State implements Printable {
         return ls;
     }
 
+
     public boolean in_border(int i, int j){
         return i>=0 && j >=0 && i<size && j<size;
-    }
-
-    public boolean is_valid(int i, int j){
-        return in_border(i,j) && !board[i][j].isBlack() && !board[i][j].isColor();
     }
 
     public boolean winning(){
@@ -143,13 +141,26 @@ public class State implements Printable {
     }
 
 
-    public boolean isEqualTo(State s) {
-       return s.hashCode() == this.hashCode();
-    }
-
     @Override
     public int hashCode() {
-        return Arrays.deepHashCode(board);
+        if(hash != null) return hash;
+        int h = 17;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if(board[i][j].isGoal() || board[i][j].isColor()) {
+                    h = 31 * h + i;
+                    h = 31 * h + j;
+                    h = 31 * h + board[i][j].hashCode();
+                }
+            }
+        }
+        hash = h;
+        return hash;
+    }
+
+
+    public boolean isEqualTo(State s) {
+       return s.hashCode() == this.hashCode();
     }
 
 

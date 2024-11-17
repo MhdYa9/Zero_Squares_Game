@@ -20,6 +20,7 @@ public class Muggle extends Player{
                 letter = input.next();
                 int move = game.letterSwitcher(letter);
                 game.setCurrent_state(game.getCurrent_state().move(move));
+                System.out.println(game.getCurrent_state().hashCode());
                 if(game.getCurrent_state() == null){
                     throw new IllegalStateException();
                 }
