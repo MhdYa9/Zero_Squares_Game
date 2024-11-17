@@ -20,6 +20,9 @@ public class Muggle extends Player{
                 letter = input.next();
                 int move = game.letterSwitcher(letter);
                 game.setCurrent_state(game.getCurrent_state().move(move));
+                if(game.getCurrent_state() == null){
+                    throw new IllegalStateException();
+                }
             }
             catch (InputMismatchException e){
                 System.out.println("the value you entered is not valid");

@@ -71,4 +71,11 @@ public class Cell {
         return goal.equals(other.getGoal()) && color.equals(other.getColor());
 
     }
+
+    @Override
+    public int hashCode() {
+        int result = (color == null) ? 0 : color.hashCode();
+        result = 31 * result + ((goal == null) ? 0 : goal.hashCode());
+        return result;
+    }
 }

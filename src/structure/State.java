@@ -31,20 +31,16 @@ public class State implements Printable {
     public List<State> nexStates(){
         List <State> ls = new ArrayList<>();
         for(int i = 0;i<4;i++){
-           State s = this.move(i).deepCopy();
-           if(!s.isEqualTo(this)){
-               ls.add(s);
-           }
+           ls.add(this.move(i));
         }
         return ls;
     }
 
 
-    public State move(int move) throws InputMismatchException,IllegalStateException{
+    public State move(int move) {
         List <Pair<Integer,Integer>> colored_cells_coordinates = validCellsToMove(move);
         State nextState = this.deepCopy();
 
-        if(move>3 || move<0) throw  new InputMismatchException("the number you entered is not valid for a movement");
         Cell [][] next_state_board = nextState.getBoard();
         do{
             for(int k = 0; k<colored_cells_coordinates.size();k++){
@@ -52,7 +48,7 @@ public class State implements Printable {
                 int i = coord.first; int j = coord.second;
                 colored_cells_coordinates.remove(coord);
                 if(!nextState.in_border(i+I[move],j+J[move])){
-                    throw new IllegalStateException("out of border you lost");
+                    return null;
                 }
                 if(!next_state_board[i+I[move]][j+J[move]].isAvailable()){
                    continue;
@@ -148,18 +144,7 @@ public class State implements Printable {
 
 
     public boolean isEqualTo(State s) {
-        if (this == s) {
-            return true;
-        }
-        if (s == null || getClass() != s.getClass()) {
-            return false;
-        }
-        for (int i = 0; i < size; i++) {
-            for(int j = 0;j <size;j++){
-                if(!board[i][j].isEqualTo(s.board[i][j])) return false;
-            }
-        }
-        return true;
+       return s.hashCode() == this.hashCode();
     }
 
     @Override

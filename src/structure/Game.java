@@ -84,7 +84,7 @@ public class Game {
 
         boolean flag = true;
         while(flag) {
-            System.out.println("choose your player\n1)Muggle\n2)Wizard");
+            System.out.println("choose your player\n1) Muggle\n2) Wizard");
             int choose = input.nextInt();
             if(choose == 1){
                 flag = false;
@@ -93,6 +93,9 @@ public class Game {
             else if(choose == 2){
                 flag = false;
                 player = new Wizard();
+            }
+            else{
+                System.out.println("bad input, try again, ");
             }
             player.play(this);
         }
