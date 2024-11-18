@@ -176,9 +176,11 @@ public class State implements Printable {
             for (int j = 0; j < length; j++) {
                 if(board[i][j].isGoal()) {
                    sb.append(i);sb.append(j);sb.append(board[i][j].getGoal());
+                   //sb.append('|');
                 }
                 if (board[i][j].isColor()) {
                     sb.append(i);sb.append(j);sb.append(board[i][j].getColor());
+                    //sb.append('|');
                 }
             }
         }

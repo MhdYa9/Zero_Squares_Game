@@ -3,8 +3,11 @@ package structure;
 import players.Muggle;
 import players.Player;
 import players.Wizard;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
 
 public class Game {
@@ -15,13 +18,12 @@ public class Game {
     private Player player;
 
     public Game(){
-        readFromConsole();
+        readFromFile("src/levels.txt");
         choosePlayer();
     }
 
     public void readFromConsole(){
 
-        //read the size
         int width = 0; int length = 0;
         do{
             length = input.nextInt();
@@ -108,9 +110,82 @@ public class Game {
     }
 
 
-    public void readFromFile(){
+    public void readFromFile(String file_name) {
+        HashMap<String, String[]> levels = loadLevels(file_name);
+        Scanner input = new Scanner(System.in);
+        String selectedLevel;
 
+        while (true) {
+            System.out.println("Available Levels:");
+            for (String level : levels.keySet()) {
+                System.out.println(level);
+            }
+            System.out.print("Select a level: ");
+            selectedLevel = input.nextLine().trim();
+
+            if (levels.containsKey(selectedLevel)) {
+                String[] levelData = levels.get(selectedLevel);
+
+                try {
+                    int length = Integer.parseInt(levelData[0]);
+                    int width = Integer.parseInt(levelData[1]);
+
+                    String[][] board = new String[width][length];
+                    for (int i = 0; i < width; i++) {
+                        String[] cells = levelData[i + 2].split(" ");
+                        board[i] = cells;
+                    }
+
+                    // Initialize the game state
+                    initial_state = new State(length, width, board);
+                    current_state = new State(length, width, board);
+
+                    break;
+                } catch (Exception e) {
+                    System.err.println("Error loading level: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Invalid level, please try again.");
+            }
+        }
     }
+
+    private static HashMap<String,String[]> loadLevels(String filename) {
+
+        HashMap<String, String[]> levels = new HashMap<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            String currentLevel = null;
+            String[] levelData = new String[100]; // Assuming maximum 100 lines per level
+            int lineCount = 0;
+
+            while ((line = br.readLine()) != null) {
+                if (line.endsWith(":")) {
+                    // Store previous level if exists
+                    if (currentLevel != null) {
+                        levels.put(currentLevel, levelData);
+                    }
+                    // Start new level
+                    currentLevel = line.substring(0, line.length() - 1).trim();
+                    levelData = new String[100];
+                    lineCount = 0;
+                } else {
+                    levelData[lineCount++] = line.trim();
+                }
+            }
+            // Store last level
+            if (currentLevel != null) {
+                levels.put(currentLevel, levelData);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+        }
+
+        return levels;
+    }
+
+
 
 
     public State getInitial_state() {
