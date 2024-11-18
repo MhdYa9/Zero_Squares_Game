@@ -9,6 +9,9 @@ import java.util.*;
 public class AlgorithmUtils {
 
 
+    public static int visited_log;
+
+
     public static Stack<Integer> dfs(State first_state){
 
         HashSet <Integer> visited = new HashSet<>();
@@ -40,8 +43,7 @@ public class AlgorithmUtils {
             }
         }
 
-        System.out.println("Visited nodes: "+visited.size());
-
+        visited_log = visited.size();
         Stack <Integer> path = new Stack<>();
 
         Integer n = goal;

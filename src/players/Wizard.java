@@ -55,12 +55,14 @@ public class Wizard extends Player{
             }
 
             game.setCurrent_state(game.getCurrent_state().move(path.pop()));
+            System.out.println();
         }
 
         game.getCurrent_state().print();
 
         System.out.println("\nElapsed time: " + elapsedTime / 1000000000.0 + " s");
-        System.out.println("total moves: " + total);
+        System.out.println("Visited nodes: "+ AlgorithmUtils.visited_log);
+        System.out.println("Total moves: " + total);
 
 
     }

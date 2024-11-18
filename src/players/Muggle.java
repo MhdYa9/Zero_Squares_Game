@@ -12,14 +12,14 @@ public class Muggle extends Player{
     public void play(Game game){
 
         String letter = "" ;
+        System.out.println("enter your move with letters: a - w - s - d - r for restart\n");
         while(!game.winning()){
             try {
                 game.getCurrent_state().print();
-                System.out.println("enter your move with letters: a - w - s - d - r for restart");
+                System.out.println();
                 letter = input.next();
                 int move = game.letterSwitcher(letter);
                 game.setCurrent_state(game.getCurrent_state().move(move));
-                System.out.println(game.getCurrent_state().hashCode());
                 if(game.getCurrent_state() == null){
                     throw new IllegalStateException();
                 }

@@ -120,8 +120,9 @@ public class Game {
             for (String level : levels.keySet()) {
                 System.out.println(level);
             }
-            System.out.print("Select a level: ");
+            System.out.print("Select a level (input only the number): ");
             selectedLevel = input.nextLine().trim();
+            selectedLevel = "Level "+selectedLevel;
 
             if (levels.containsKey(selectedLevel)) {
                 String[] levelData = levels.get(selectedLevel);
