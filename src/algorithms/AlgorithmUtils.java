@@ -66,15 +66,16 @@ public class AlgorithmUtils {
         queue.add(first_state);
         parent.put(first_state.hashCode(),null);
         parentMove.put(first_state.hashCode(),-1);
+        visited.add(first_state.hashCode());
         State node; Integer goal = null; boolean flag = true;
 
         while(!queue.isEmpty() && flag){
             node = queue.poll();
-            visited.add(node.hashCode());
             int i = 0;
             for(State s: node.nexStates()){
                 if((s != null)&&(s.is_valid)&&(!visited.contains(s.hashCode()))){
                     queue.add(s);
+                    visited.add(s.hashCode());
                     parent.put(s.hashCode(),node.hashCode());
                     parentMove.put(s.hashCode(),i);
                     if(s.winning()){
