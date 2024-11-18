@@ -40,6 +40,8 @@ public class AlgorithmUtils {
             }
         }
 
+        System.out.println("Visited nodes: "+visited.size());
+
         Stack <Integer> path = new Stack<>();
 
         Integer n = goal;
@@ -81,6 +83,8 @@ public class AlgorithmUtils {
                 i++;
             }
         }
+
+        System.out.println("Visited nodes: "+visited.size()+" node");
 
         Stack <Integer> path = new Stack<>();
 

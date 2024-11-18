@@ -22,29 +22,30 @@ public class Game {
     public void readFromConsole(){
 
         //read the size
-        int size = 0;
+        int width = 0; int length = 0;
         do{
-            size = input.nextInt();
+            length = input.nextInt();
+            width = input.nextInt();
         }
-        while(size<=0);
+        while(length<=0 || width <=0);
 
         //read the console
 
-        String [][] board = new String[size][size];
+        String [][] board = new String[width][length];
         boolean flag = true;
         input.nextLine();
 
         while(flag){
-            for(int i = 0 ; i<size;i++){
+            for(int i = 0 ; i<width;i++){
                 String row = input.nextLine();
                 String [] cells = row.split(" ");
-                if(cells.length!=size){
-                    System.out.println("each row must be of size: "+size);
+                if(cells.length!=length){
+                    System.out.println("each row must be of size: "+width);
                     flag = false;
                     break;
                 }
                 boolean validChar = true;
-                for(int j = 0;j<size;j++){
+                for(int j = 0;j<length;j++){
                     if(cells[j].length() == 1){
                         char c = cells[j].charAt(0);
                         if(!(Character.isAlphabetic(c)||(c == 'o') || (c == '*'))){
@@ -75,8 +76,8 @@ public class Game {
             flag = false;
         }
 
-        current_state = new State(size, board);
-        initial_state = new State(size,board);
+        current_state = new State(length,width, board);
+        initial_state = new State(length,width,board);
 
     }
 

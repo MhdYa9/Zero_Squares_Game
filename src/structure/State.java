@@ -7,10 +7,11 @@ import java.util.*;
 public class State implements Printable {
 
     private Cell [][] board;
-    private static int size;
+    private static int length;
+    private static int width;
     public Integer hash = null;
-    public String id = "";
     public boolean is_valid;
+
 
     public static final int [] I = {0,-1,0,1};
     public static final int [] J = {-1,0,1,0};
@@ -19,12 +20,13 @@ public class State implements Printable {
 
     }
 
-    public State(int size, String [][] board){
-        State.size = size;
-        this.board = new Cell[size][size];
+    public State(int length,int width, String [][] board){
+        State.length = length;
+        State.width = width;
+        this.board = new Cell[width][length];
         this.is_valid = true;
-        for (int i = 0; i<size;i++){
-            for (int j = 0;j<size;j++){
+        for (int i = 0; i<width;i++){
+            for (int j = 0;j<length;j++){
                 this.board[i][j] = new Cell(board[i][j]);
             }
         }
@@ -80,8 +82,8 @@ public class State implements Printable {
 
     public List<Pair<Integer, Integer>> validCellsToMove(int move){
         List <Pair<Integer,Integer>> ls = new ArrayList<>();
-        for(int i = 0;i <size;i++){
-            for(int j = 0; j<size;j++){
+        for(int i = 0;i <width;i++){
+            for(int j = 0; j<length;j++){
                 if(board[i][j].isColor()&&in_border(i+I[move],j+J[move])&&board[i+I[move]][j+J[move]].isAvailable()){
                     ls.add(new Pair<>(i,j));
                 }
@@ -92,8 +94,8 @@ public class State implements Printable {
 
     public List<Pair<Integer,Integer>> coloredCells(){
         List <Pair<Integer,Integer>> ls = new ArrayList<>();
-        for(int i = 0;i <size;i++){
-            for(int j = 0; j<size;j++){
+        for(int i = 0;i <width;i++){
+            for(int j = 0; j<length;j++){
                 if(board[i][j].isColor()){
                     ls.add(new Pair<>(i,j));
                 }
@@ -103,8 +105,9 @@ public class State implements Printable {
     }
 
 
+
     public boolean in_border(int i, int j){
-        return i>=0 && j >=0 && i<size && j<size;
+        return i>=0 && j >=0 && i<width && j<length;
     }
 
     public boolean winning(){
@@ -114,8 +117,8 @@ public class State implements Printable {
 
     @Override
     public void print() {
-        for(int i = 0; i<size;i++){
-            for (int j = 0; j<size; j++){
+        for(int i = 0; i<width;i++){
+            for (int j = 0; j<length; j++){
                 if(board[i][j].isGoal() && board[i][j].isColor()){
                     System.out.print(Printable.colors[Printable.mp.get(board[i][j].getColor())] + Printable.borders[Printable.mp.get(board[i][j].getGoal().toLowerCase())]  + " ■ " + Printable.RESET);
                 }
@@ -132,9 +135,9 @@ public class State implements Printable {
 
     public State deepCopy(){
         State clone = new State();
-        clone.board = new Cell[size][size];
-        for (int i = 0;i<size;i++){
-            for(int j = 0;j<size;j++){
+        clone.board = new Cell[width][length];
+        for (int i = 0;i<width;i++){
+            for(int j = 0;j<length;j++){
                 clone.board[i][j] = new Cell(board[i][j].getColor(),board[i][j].getGoal());
             }
         }
@@ -143,8 +146,8 @@ public class State implements Printable {
 
     public void validate(){
         HashMap <String,Integer> mp = new HashMap<>();
-        for (int i = 0; i <size ; i++) {
-            for (int j = 0; j <size ; j++) {
+        for (int i = 0; i <width ; i++) {
+            for (int j = 0; j <length ; j++) {
                 if(board[i][j].isColor()){
                     mp.put(board[i][j].getColor(),mp.getOrDefault(board[i][j].getColor(),0)+1);
                 }
@@ -168,39 +171,19 @@ public class State implements Printable {
     @Override
     public int hashCode() {
         if(hash != null) return hash;
-        int h = 17;
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if(board[i][j].isGoal() || board[i][j].isColor()) {
-                    h = 31 * h + i;
-                    h = 31 * h + j;
-                    h = 31 * h + board[i][j].hashCode();
-                }
-            }
-        }
-        hash = h;
-        return hash;
-    }
-
-    public String id(){
-        if(!id.isEmpty()) return id;
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if(board[i][j].isColor()){
-                    sb.append(board[i][j].getColor().charAt(0));
-                    sb.append(i+'0');
-                    sb.append(j+'0');
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < length; j++) {
+                if(board[i][j].isGoal()) {
+                   sb.append(i);sb.append(j);sb.append(board[i][j].getGoal());
                 }
-                if(board[i][j].isGoal()){
-                    sb.append(board[i][j].getGoal().charAt(0));
-                    sb.append(i+'0');
-                    sb.append(j+'0');
+                if (board[i][j].isColor()) {
+                    sb.append(i);sb.append(j);sb.append(board[i][j].getColor());
                 }
             }
         }
-        id = sb.toString();
-        return id;
+        hash = sb.toString().hashCode();
+        return hash;
     }
 
 
@@ -213,7 +196,4 @@ public class State implements Printable {
         return board;
     }
 
-    public static int getSize() {
-        return size;
-    }
 }

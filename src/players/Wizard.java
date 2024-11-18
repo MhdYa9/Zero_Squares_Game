@@ -43,6 +43,7 @@ public class Wizard extends Player{
         long elapsedTime = endTime - startTime;
         int total = path.size();
 
+
         // Convert to milliseconds for readability
         while(!path.isEmpty()){
 
@@ -60,6 +61,8 @@ public class Wizard extends Player{
 
         System.out.println("\nElapsed time: " + elapsedTime / 1000000000.0 + " s");
         System.out.println("total moves: " + total);
+
+
     }
 
 }
