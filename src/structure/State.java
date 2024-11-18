@@ -9,6 +9,7 @@ public class State implements Printable {
     private Cell [][] board;
     private static int size;
     public Integer hash = null;
+    public String id = "";
     public boolean is_valid;
 
     public static final int [] I = {0,-1,0,1};
@@ -179,6 +180,27 @@ public class State implements Printable {
         }
         hash = h;
         return hash;
+    }
+
+    public String id(){
+        if(!id.isEmpty()) return id;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if(board[i][j].isColor()){
+                    sb.append(board[i][j].getColor().charAt(0));
+                    sb.append(i+'0');
+                    sb.append(j+'0');
+                }
+                if(board[i][j].isGoal()){
+                    sb.append(board[i][j].getGoal().charAt(0));
+                    sb.append(i+'0');
+                    sb.append(j+'0');
+                }
+            }
+        }
+        id = sb.toString();
+        return id;
     }
 
 
