@@ -19,6 +19,7 @@ public class Game {
 
     public Game(){
         readFromFile("src/levels.txt");
+        //readFromConsole();
         choosePlayer();
     }
 

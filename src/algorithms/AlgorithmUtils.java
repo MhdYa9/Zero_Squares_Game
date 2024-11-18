@@ -9,7 +9,7 @@ import java.util.*;
 public class AlgorithmUtils {
 
 
-    public static int visited_log;
+    public static int visited_log = 0;
 
 
     public static Stack<Integer> dfs(State first_state){
@@ -86,7 +86,7 @@ public class AlgorithmUtils {
             }
         }
 
-        System.out.println("Visited nodes: "+visited.size()+" node");
+        visited_log = visited.size();
 
         Stack <Integer> path = new Stack<>();
 

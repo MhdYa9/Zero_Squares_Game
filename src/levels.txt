@@ -1,68 +1,210 @@
-Level 2:
+Level 20:
+10
+7
+* o * * * o * * o *
+* W r o o b o y o *
+* o o o o o o R o *
+* * o * * o * * o *
+o * * * * o * * o *
+o o o o * o o Y o o
+o o o o * * * * * *
+
+
+Level 19:
+12
+10
+o o o o o * * * * * o o
+o o o o * * o r o * * *
+* * * * * o o o y o o *
+* c o o o o o o o * o *
+* o o o o o o o o * o *
+* b B * o o * * * * o *
+* * * * o W o * * * o *
+o o o * o Y o * * * o *
+o o o * o R o o o o o o
+o o o * * * * * * * * *
+
+Level 18:
+10
+7
+* o * * * o * * o *
+* W r o o b o y o *
+* o o o o o o R o *
+* * o * * o * * o *
+o * * * * o * * o *
+o o o o * o o Y o o
+o o o o * * * * * *
+
+Level 17:
+12
+8
+* * * * * * * * * * o o
+o W B o o o o o r * o o
+* C o o o o o o o * * *
+* o o o o o o o o o o *
+* o o b c o o o o * o *
+* * * o * * * * o * o *
+o o * o o o o o o o o *
+o o * * * * * * * * * *
+
+Level 16:
+13
+5
+o o o o o o o o o * * * *
+* * * * * o o o * * o C *
+* W G Y * * * * * o o o *
+* o o o g c y r o o o o *
+* * * * * * * * * * * * *
+
+
+Level 15:
+11
+8
+* * * * * * * * o o o
+* r o * o o b * o o o
+o o o R o o o o o o o
+* Y o o o B o * * * *
+* o o o o * o o o o *
+* * * * * * * * o o *
+o o o o o o o o o y *
+o o o o o o o * o * *
+
+Level 14:
+11
+7
+o * * * * * * * * * o
+* * Y o o o o o o * *
+o R o y o b o o o o *
+o o o * * * * * * o *
+* r o o o o o B * o *
+* * o o o o o o o o *
+o * * * * * * * * * *
+
+
+Level 13:
+7
+8
+o o o * * * *
+o o o B o o *
+o R o o o o *
+* o o o o o *
+* o o o * o *
+* r o o * o *
+* b o o o o *
+* * * * * * *
+
+Level 12:
 8
 6
 * * * * * * * *
-* o o * o o o *
-* r o o o o o *
+* o o * o o o o
+o o o b r o o o
+* o B o o o o *
+* R o o o o o *
+* * * o * * * *
+
+
+Level 11:
+10
+6
+* * * * * * * * * *
+* r o o o o o o o o
+* o * * * * * * o *
+* o * * * * * * o *
+* o o o o o o o R *
+* * * * * * * * * *
+
+
+Level 10:
+9
+5
+o o o * * * * o o
+* * * * r Y * * *
+* B c b o o o o *
+* o C * R o * G *
+* * * * * * * * *
+
+
+Level 9:
+8
+12
+o * * * o o o o
+* * Y * * o o o
+* o o o * o o o
+* * * o * * * *
+* b o o y * * *
+* * o o o o o *
+* r o * R o g *
+* * * * o * * *
+o o o * o B o *
+o o o * o o o *
+o o o * * G * *
+o o o o * * * o
+
+
+Level 8:
+10
+8
+* * * * * * * * o o
+* o o o * R o * o o
+* o o o o o o * o o
+* o o o * G o * o o
+* Y * o * * * * * *
+* * o o o o o b y *
+* o o * o o * r B *
+* * * * * * * * * *
+
+Level 7:
+11
+7
+* * * * * * * * * * *
+* y r b g o o o o o o
+* o o o o o Y o o o o
+* * o o o G o o o o o
+o * o o B o * * * * *
+o * o R o o * o o o o
+o * * * * * * o o o o
+
+
+Level 6:
+8
+9
+o * * * * * * *
+o * o o o o o *
+o * o B o * o *
+* * o * * * o *
+* o y r b o o *
+* o * * * * o *
+* o * o Y * R *
 * o o o o o o *
-* * * * W * * *
-o o o * * * o o
+* * * * * * * *
 
 
 Level 5:
-10
-9
-o o * * * * * * * *
-o o * o o o o o o *
-o * * o o R o o * *
-* * o o o o * r * o
-* o o o * o o o * *
-* o o o o o o o o *
-* o * o o o o o o *
-* o o o o o o * * *
-* * * * * * * * o o
+7
+7
+* * * * * * *
+* B * r * R *
+* o o o o o *
+* o o o o o *
+* * o o o o *
+o * o o o o *
+o * * * * * *
 
-Level 6:
-9
-5
-* * * * * * o o o
-* R o o o * * o o
-* o o B o o * * *
-* o o o o o b r *
-* * * * * * * * *
-
-Level 13:
+Level 4:
 11
 8
 o o * * * * * o o o o
-* * * o o o * o o o o
+* * * b r y * o o o o
 * o * o o B * * * * *
-* o * b o y o * R o *
+* o * o o o o * R o *
 * o * * o * * * o o *
 * o o o o o o o o * *
-* o o * rY o o o * * o
+* o o * Y o o o * * o
 * * * * * * * * * o o
 
-Level 22:
-8
-6
-* * * * * * * *
-* o o * o o o *
-o o o b r o o *
-* o B o o o * *
-* R o o o o * o
-* * * o * * * o
 
-Level 31:
-12
-5
-o o o o o o o o * * * *
-* * * * * o o * * o P *
-* W C Y * * * * o o o *
-* c o o o p y r o o o *
-* * * * * * * * * * * *
-
-Level 32:
+Level 3:
 12
 8
 o o * * * * * * * * o o
@@ -75,30 +217,29 @@ o * * o o o o o o * * o
 * * * * * * * * * * * *
 
 
-Level 29:
-8
+Level 2:
 12
-o * * * o o o o
-* * Y * * o o o
-* o o o * o o o
-* * * o * * o o
-* b o o y * * *
-* * o o o o o *
-* r o * R o c *
-* * * * o * * *
-o o o * o B o *
-o o o * o o o *
-o o o * * C * *
-o o o o * * * o
+9
+o o o * * * * o o o o o
+o o o * R * * * * * * *
+* * * * o o o o o o o *
+* o o o o o o o o o B *
+* o o b o o o o o o o *
+* r o o o o o o o o o *
+* o o o o o * * * * * *
+* o o o o o * o o o o o
+* * * * * * * o o o o o
 
 
-Level 30:
-16
-6
-o o o o * * * * * o * * * * * * 
-* * * * * o o P * * * Y * * C * 
-* r b c o o * o o o o o o o o * 
-* y p o o o o o o o o o * o o * 
-* * * * * W * * B * * * * * * * 
-o o o o * * * o o * o o o o o o
-
+Level 1:
+11
+9
+o o o * * * o o o o o
+o o o * o * * * * * *
+* * * * o o o o o o *
+* o * o o o o * o o *
+* o o R o o o o o o *
+* r o o o o * o o o *
+* o o o o * * * * * *
+* o o o o * o o o o o
+* * * * * * o o o o o
