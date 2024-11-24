@@ -188,7 +188,6 @@ public class State implements Printable {
         return hash;
     }
 
-
     public boolean isEqualTo(State s) {
        return s.hashCode() == this.hashCode();
     }
