@@ -47,7 +47,6 @@ public class Wizard extends Player{
 
         // Convert to milliseconds for readability
         while(!path.isEmpty()){
-
             game.getCurrent_state().print();
             try {
                 Thread.sleep(pace);

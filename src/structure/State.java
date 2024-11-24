@@ -46,35 +46,33 @@ public class State implements Printable {
         State nextState = this.deepCopy();
 
         Cell [][] next_state_board = nextState.getBoard();
-        do{
+
             for(int k = 0; k<colored_cells_coordinates.size();k++){
                 Pair<Integer, Integer> coord = colored_cells_coordinates.get(k);
                 int i = coord.first; int j = coord.second;
-                colored_cells_coordinates.remove(coord);
                 if(!nextState.in_border(i+I[move],j+J[move])){
                     return null;
                 }
-                if(!next_state_board[i+I[move]][j+J[move]].isAvailable()){
-                   continue;
+                if(!next_state_board[i+I[move]][j+J[move]].isAvailable()) {
+                    continue;
                 }
                 next_state_board[i+I[move]][j+J[move]].setColor(next_state_board[i][j].getColor());
                 next_state_board[i][j].setColor("o");
                 Pair<Integer, Integer> new_coord = new Pair<>(i+I[move],j+J[move]);
-                colored_cells_coordinates.add(new_coord);
+//                colored_cells_coordinates.add(new_coord);
                 if(next_state_board[i+I[move]][j+J[move]].isGoal()){
                     if(next_state_board[i+I[move]][j+J[move]].getGoal().equalsIgnoreCase(next_state_board[i+I[move]][j+J[move]].getColor())){
                         next_state_board[i+I[move]][j+J[move]].setColor("o");
                         next_state_board[i+I[move]][j+J[move]].setGoal("");
-                        colored_cells_coordinates.remove(new_coord);
+                        continue;
                     }
                     else if(next_state_board[i+I[move]][j+J[move]].isWhiteGoal()){
                         next_state_board[i+I[move]][j+J[move]].setGoal(next_state_board[i+I[move]][j+J[move]].getColor().toUpperCase());
                     }
                 }
-
+                colored_cells_coordinates.add(new_coord);
             }
-        }
-        while(!colored_cells_coordinates.isEmpty());
+
         nextState.validate();
         return nextState;
 
@@ -84,7 +82,7 @@ public class State implements Printable {
         List <Pair<Integer,Integer>> ls = new ArrayList<>();
         for(int i = 0;i <width;i++){
             for(int j = 0; j<length;j++){
-                if(board[i][j].isColor()&&in_border(i+I[move],j+J[move])&&board[i+I[move]][j+J[move]].isAvailable()){
+                if(board[i][j].isColor()&&board[i+I[move]][j+J[move]].isAvailable()){
                     ls.add(new Pair<>(i,j));
                 }
             }
