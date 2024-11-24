@@ -70,13 +70,15 @@ public class AlgorithmUtils {
         if(parent!=null) rdfs_parent.put(state.hashCode(),parent.hashCode());
         int i = 0;
         for(State n : state.nexStates()){
-            r_dfs(n,state);
-            rdfs_parent.put(state.hashCode(),n.hashCode());
-            rdfs_parentMove.put(state.hashCode(),i);
-            if(state.winning()){
-                rdfs_goal = state.hashCode();
-                rdfs_flag = true;
-                return;
+            if((n != null)&&(n.is_valid)&&(!rdfs_visited.contains(n.hashCode()))){
+                r_dfs(n,state);
+                rdfs_parent.put(n.hashCode(),state.hashCode());
+                rdfs_parentMove.put(n.hashCode(),i);
+                if(n.winning()){
+                    rdfs_goal = n.hashCode();
+                    rdfs_flag = true;
+                    return;
+                }
             }
             i++;
         }
@@ -84,6 +86,7 @@ public class AlgorithmUtils {
 
     public static Stack<Integer> r_dfs(State first_state){
         rdfs_parent.put(first_state.hashCode(),null);
+        rdfs_parentMove.put(first_state.hashCode(),-1);
         r_dfs(first_state,null);
         Stack <Integer> path = new Stack<>();
         Integer n = rdfs_goal;
