@@ -63,15 +63,13 @@ public class AlgorithmUtils {
     }
 
 
-    public static void r_dfs(State state,State parent){
+    public static void rec_dfs(State state){
         if(rdfs_flag) return;
         visited_log++;
         rdfs_visited.add(state.hashCode());
-        if(parent!=null) rdfs_parent.put(state.hashCode(),parent.hashCode());
         int i = 0;
         for(State n : state.nexStates()){
             if((n != null)&&(n.is_valid)&&(!rdfs_visited.contains(n.hashCode()))){
-                r_dfs(n,state);
                 rdfs_parent.put(n.hashCode(),state.hashCode());
                 rdfs_parentMove.put(n.hashCode(),i);
                 if(n.winning()){
@@ -79,6 +77,7 @@ public class AlgorithmUtils {
                     rdfs_flag = true;
                     return;
                 }
+                rec_dfs(n);
             }
             i++;
         }
@@ -87,7 +86,7 @@ public class AlgorithmUtils {
     public static Stack<Integer> r_dfs(State first_state){
         rdfs_parent.put(first_state.hashCode(),null);
         rdfs_parentMove.put(first_state.hashCode(),-1);
-        r_dfs(first_state,null);
+        rec_dfs(first_state);
         Stack <Integer> path = new Stack<>();
         Integer n = rdfs_goal;
         while(n != null){
