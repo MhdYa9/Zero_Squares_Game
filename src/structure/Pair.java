@@ -3,7 +3,7 @@ package structure;
 import java.util.Comparator;
 import java.util.List;
 
-public class Pair<X, Y> {
+public class Pair<X extends Comparable<X>, Y> implements Comparable<Pair<X, Y>> {
     public final X first;
     public final Y second;
 
@@ -57,5 +57,10 @@ public class Pair<X, Y> {
     @Override
     public int hashCode() {
         return 31 * first.hashCode() + second.hashCode();
+    }
+
+    @Override
+    public int compareTo(Pair<X,Y> other) {
+        return this.first.compareTo(other.first);
     }
 }

@@ -10,6 +10,8 @@ public class AlgorithmUtils {
 
 
     public static int visited_log = 0;
+
+
     private static HashSet <Integer> rdfs_visited = new HashSet<>();
     private static HashMap <Integer,Integer> rdfs_parent = new HashMap<>();
     private static HashMap <Integer,Integer> rdfs_parentMove = new HashMap<>();
@@ -143,54 +145,55 @@ public class AlgorithmUtils {
     }
 
 
-    //uniform cost search
-    public static void ucs(State first_state){
+    public static Stack<Integer> uniform_cost_search(State first_state){
 
-    }
+        //implementing for cost 1 for each step
 
-    /*
-    *
-    vector <ll> dijkstra(int node){
+        PriorityQueue <Pair<Integer,State>> pq = new PriorityQueue<>();
+        HashMap <Integer,Integer> parent = new HashMap<>();
+        HashMap <Integer,Integer> parentMove = new HashMap<>();
+        HashMap <Integer,Integer> cost = new HashMap<>();
 
-        priority_queue <pll> pq; //first is the distance from the source and sec is the node itself
-        vector <ll> dist(n+1,infl);
-        vector <bool> picked(n+1,false);
-        vector <int> path(n+1);
-        dist[node] = 0; pq.push({-0,node}); path[node] = -1; //dsu array to record the path
+        pq.add(new Pair<>(0,first_state));
+        cost.put(first_state.hashCode(),0);
+        parent.put(first_state.hashCode(),null);
+        parentMove.put(first_state.hashCode(),-1);
 
-        while(!pq.empty()){
-            pll u = pq.top(); pq.pop();
-            if(picked[u.second]) continue; //pretty important line
-            u.first*=-1; picked[u.second] = true;
-    //        if(u.first>dist[u.second]){   // used if u don't want picked   array
-    //            continue; //this is because if we picked a solution it's the best and any other solution will be bad
-    //        }
-            for(pll v : adjw[u.second]){
-                if(!picked[v.vertex]){
-                    if(dist[v.vertex]>dist[u.second]+v.weight){ //relaxation: if the new path is better update
-                        dist[v.vertex] = dist[u.second]+v.weight;
-                        path[v.vertex] = u.second; //if u update the node then update its parent
-                        pq.push({-dist[v.vertex],v.vertex});
+        State node; Integer goal = null; boolean flag = true; Integer w = 0;
+
+        while (!pq.isEmpty() && flag){
+            visited_log++;
+            Pair <Integer,State> p = pq.poll();
+            node = p.second; w = p.first;
+            if(cost.get(node.hashCode()) < w) continue;
+            int i = 0;
+            for(State s : node.nexStates()){
+                if((s != null)&&(s.is_valid) && (cost.getOrDefault(s.hashCode(),Integer.MAX_VALUE) > w + 1)){
+                    pq.add(new Pair<>(w+1,s));
+                    cost.put(s.hashCode(),w+1);
+                    parent.put(s.hashCode(),node.hashCode());
+                    parentMove.put(s.hashCode(),i);
+                    if(s.winning()){
+                        goal = s.hashCode(); flag = false;
+                        break;
                     }
                 }
+                i++;
             }
+
         }
-        //printing the path
-        if(dist[n] == infl){
-            cout<< -1;
-            //return;
+
+        Stack <Integer> path = new Stack<>();
+
+        Integer n = goal;
+        while(n != null){
+            path.add(parentMove.get(n));
+            n = parent.get(n);
         }
-        int parent = n; stack <int> st;
-        while(parent != -1){
-            st.push(parent);
-            parent = path[parent];
-        }
-        while(!st.empty()){
-            cout<<st.top()<<" ";
-            st.pop();
-        }
-        return dist; //return path //return destination == -1?-1:dist[destination];
+        if(!path.isEmpty()) path.pop();
+
+        return path;
+
     }
-        * */
 
 }
