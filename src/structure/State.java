@@ -195,4 +195,11 @@ public class State implements Printable {
         return board;
     }
 
+    public static int getLength() {
+        return length;
+    }
+
+    public static int getWidth() {
+        return width;
+    }
 }
